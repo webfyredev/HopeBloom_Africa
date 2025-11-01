@@ -21,6 +21,13 @@ export const scrollLeftEffect = {
 export const cardHoverEffects = {
     whileHover : {scale : 1.05}
 }
+export const cardScrollEffects = {
+    initial : {opacity : 0, x : 30},
+    whileInView : {opacity : 1, x:0},
+    transition : {duration : 1},
+    exit : {opacity : 0, x:30},
+    whileHover : {scale : 1.05},
+}
 export const scrollRightEffect = {
     initial : {opacity : 0, x:-30},
     whileInView : {opacity :1, x:0},

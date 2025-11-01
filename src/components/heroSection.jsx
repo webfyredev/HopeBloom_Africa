@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import bgImg1 from '../images/ngo/bg1.webp'
 import bgImg2 from '../images/ngo/bg2.webp'
 import bgImg3 from '../images/ngo/bg3.webp'
+import { buttonHoverEffects } from "../animations/effect";
 
 
 const slides = [
@@ -85,12 +86,12 @@ function SlideInner({ slide }) {
           {slide.text}
         </motion.p>
         <div className="md:w-auto md:flex md:flex-row flex flex-col space-y-3 md:space-y-0 w-full mt-5 md:mt-3 space-x-3">
-            <button className="hidden md:flex md:px-9 md:py-3 px-13 py-4 ml-4 md:ml-0 bg-white text-blue-500 text-xs md:text-sm font-semibold rounded-md cursor-pointer">
+            <motion.button {...buttonHoverEffects} className="hidden md:flex md:px-9 md:py-3 px-13 py-4 ml-4 md:ml-0 bg-white text-blue-500 text-xs md:text-sm font-semibold rounded-md cursor-pointer">
                 {slide.btn_text1}
-            </button>
-            <button className="flex md:px-9 md:py-3 py-4 bg-[#FACC15] text-white text-xs md:text-sm font-semibold rounded-md cursor-pointer">
+            </motion.button>
+            <motion.button {...buttonHoverEffects} className="flex md:px-9 md:py-3 py-4 bg-[#FACC15] text-white text-xs md:text-sm font-semibold rounded-md cursor-pointer">
                 {slide.btn_text2}
-            </button>
+            </motion.button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {FaHandsHelping, FaEye, FaBullseye, FaHeart, FaAward, FaHandshake, FaPeopleCarry, FaLightbulb, FaChartLine, FaArrowRight,FaQuoteRight, FaStar, FaMedal, FaMapMarkerAlt } from 'react-icons/fa'
+import {FaHandsHelping, FaEye, FaBullseye, FaHeart, FaGraduationCap, FaStethoscope, FaFemale,FaAward, FaHandshake, FaPeopleCarry, FaLightbulb, FaChartLine, FaArrowRight,FaQuoteRight, FaStar, FaMedal, FaMapMarkerAlt,FaGlobeAfrica, FaUser, FaUsers, FaLandmark, FaUniversity} from 'react-icons/fa'
 import {GiPlantSeed, GiEarthAfricaEurope} from 'react-icons/gi'
 import {IoEyeOutline} from 'react-icons/io5'
 import testimonialBg1 from '../images/ngo/bg (7).webp';
@@ -8,6 +8,341 @@ import programImg1 from '../images/ngo/bg (5).webp';
 import programImg2 from '../images/ngo/bg (9).webp';
 import programImg3 from '../images/ngo/bg (12).webp';
 import programImg4 from '../images/ngo/bg (13).webp';
+import teamBg1 from '../images/team/team (6).webp';
+import teamBg2 from '../images/team/team (5).webp';
+import teamBg3 from '../images/team/team (3).webp';
+import teamBg4 from '../images/team/team (7).webp';
+import teamBg5 from '../images/team/team (4).webp';
+import teamBg6 from '../images/team/team (1).webp';
+import fStories1 from '../images/ngo/bg (5).webp';
+import fStories2 from '../images/ngo/blog.webp';
+import blogImg1 from '../images/ngo/blog1.webp'
+import blogImg2 from '../images/ngo/bg (6).webp';
+import blogImg3 from '../images/ngo/blog2.webp';
+import blogImg4 from '../images/ngo/bg (10).webp'
+
+export const commitment = [
+    {
+        id : 1,
+        rate : 85,
+        text : 'Goes directly to programs'
+    },
+    {
+        id : 2,
+        rate : 10,
+        text : 'Administrative costs'
+    },
+    {
+        id : 3,
+        rate : 5,
+        text : 'Fundraising expenses'
+    },
+]
+export const DonateImpact = [
+    {
+        id : 1,
+        icon : FaGraduationCap,
+        title : 'Education Impact',
+        style : 'bg-blue-100 text-blue-600',
+        text : 'Your donation helps build schools, train teachers, and provide learning materials.',
+        data : ['$25 = School supplies for 5 children', '$100 = Teacher training workshop', '$500 = Classroom renovation']
+    },
+    {
+        id : 2,
+        icon : FaHeart,
+        title : 'Healthcare Impact',
+        style : 'bg-red-100 text-red-600',
+        text : 'Support mobile clinics, medical equipment, and health education programs.',
+        data : ['$50 = Medical supplies for 20 patients', '$200 = Mobile clinics visit to remote village', '$1000 = Medical equipments for clinic']
+    },
+    {
+        id : 3,
+        icon : FaUsers,
+        title : 'Women Empowerment',
+        style : 'bg-purple-100 text-purple-600',
+        text : 'Enable skills training, microfinance, and leadership development programs',
+        data : ['$75 = Business training for 3 women', '$300 = Microfinance loan for entrepreneur', '$750 = Women cooperative setup']
+    },
+    {
+        id : 4,
+        icon : GiPlantSeed,
+        title : 'Environmental Impact',
+        style : 'bg-green-100 text-green-600',
+        text : 'Fund free planting, clean water projects, and sustainable famring initiatives',
+        data : ['$10 = Plant 50 trees', '$150 = Clean water system maintainance', '$600 = Sustainable farming training']
+    },
+]
+export const DonateData = [
+    {
+        rate : 25,
+        text : 'Provide school supplies for 5 children'
+    },
+    {
+        rate : 100,
+        text : 'Funds medical care for 10 patients'
+    },
+    {
+        rate : 500,
+        text : 'Support a womans business training'
+    },
+
+];
+export const officeData = [
+    {
+        id : 1,
+        name : 'West Africa Hub',
+        location : 'Abuja Nigeria',
+        phone : '+2348050123458',
+        email : 'westafrica@hopebloomafrica@.org'
+    },
+    {
+        id : 2,
+        name : 'Central Africa Hub',
+        location : 'Accra Ghana',
+        phone : '+233501234567',
+        email : 'centralafrica@hopebloomafrica@.org'
+    },
+    {
+        id : 1,
+        name : 'South Africa Hub',
+        location : 'Kigali Rwanada',
+        phone : '+250781234567',
+        email : 'southafrica@hopebloomafrica@.org'
+    },
+]
+
+export const blogLinks = ['All', 'Education', 'Healthcare', 'Women Empowerment', 'Environment', 'Volunteer Stories', 'Partnerships'];
+export const blogData = [
+    {
+        id : 1,
+        image : blogImg1,
+        author : 'Dr.Kwama Samale',
+        date : 'September 25 2025',
+        title : 'Mobile Clinics: Reaching the Unreachable',
+        text : 'Our mobile healthcare units have travlled over 50,000 kilometers this year, bringing essential medical care to remote villages across Ghana.',
+        time : 5,
+    },
+    {
+        id : 2,
+        image : blogImg2,
+        author : 'James Benson',
+        date : 'October 25 2025',
+        title : '500,000 Trees Planted: A milestone Achievement',
+        text : 'Celebrating our environmental sustainability programs major milestone and the communities leading the change in reforestation in Tanzania.',
+        time : 4,
+    },
+    {
+        id : 3,
+        image : blogImg3,
+        author : 'Mariam Kolley',
+        date : 'October 20 2026',
+        title : 'Volunteer Spotlight: Mariam Journey in South Africa',
+        text : 'International volunteer Mariam Kolley shares her  transformative 6-month experience working with our education program in tanzania', 
+        time : 7,
+    },
+    {
+        id : 1,
+        image : blogImg4,
+        author : 'Dr.Kwama Samale',
+        date : 'September 25 2026',
+        title : 'Strenghtening Partnerships with Local Governments',
+        text : 'How our collaborations with government agencies is scaling our impact and creating sustainable change across multiple african countries.',
+        time : 5,
+    }
+
+]
+export const featured_stories = [
+    {
+        id : 1,
+        image : fStories1,
+        author : 'Sarah wangi',
+        dates : 'October 30, 2025',
+        time : 5,
+        title : 'Transform Education in Rural Kenya: A Success Story',
+        text : 'How our education program in Kakamega Country has improved literacy rates by 85% and changed the lives of over 2,000 children'
+
+    },
+    {
+        id : 2,
+        image : fStories2,
+        author : 'Grace Obengi',
+        dates : 'October 20, 2025',
+        time : 6,
+        title : 'Women Entrepreneurs Changing Their Communities',
+        text : 'Meet five incredible women who have used our microfinance and training programs to start successful businesses and empower others'
+
+    },
+]
+export const partnerships = [
+    {
+        id : 1,
+        icon : FaHandshake, 
+        title : 'Corporate Partnerships',
+        text : 'Partner with us through CSR initiatives, employee, volunteering, and funding support',
+        values : ['Brand Visibility', 'Employee engagement', 'Social impact reporting', 'Tax benefits'],
+    },
+    {
+        id : 2,
+        icon : FaHandsHelping, 
+        title : 'NGO Collaborations',
+        text : 'Join forces with other organizations to amplify our collective impact',
+        values : ['Resource sharing', 'Knowledge exchange', 'Joint programs', 'Wider reach'],
+    },
+    {
+        id : 3,
+        icon : FaLandmark, 
+        title : 'Government Partnerships',
+        text : 'Work with local and international governments on policy and implementation',
+        values : ['Policy influence', 'Sustainable funding', 'Large-scale impact', 'Community trust'],
+    },
+    {
+        id : 4,
+        icon : FaUniversity, 
+        title : 'Academic Institutions',
+        text : 'Collaborate on research, student exchanges, and capacity building programs',
+        values : ['Research insights', 'Students volunteers', 'Innovation', 'Knowledge creation'],
+    },
+]
+export const involvedData = [
+    {
+        id : 1,
+        icon : FaUsers,
+        title : 'Education Volunteer',
+        location : 'Kenya, Ghana, Nigeria',
+        period : '3-12 months',
+        text : 'Teach in schools, develop curriculum, and train local teachers in our education programs.',
+        requirements : ['Teaching experience preferred', 'Bachelors Degree', 'Passion for education']
+
+    },
+    {
+        id : 2,
+        icon : FaHeart,
+        title : 'Healthcare Volunteer',
+        location : 'Rwanda, Senegal, Zambia',
+        period : '6-24 months',
+        text : 'Support mobile clinics, health education, and medical infrastructure development',
+        requirements : ['Medical Background', 'Valid certifications', 'Cultural sensitivity']
+
+    },
+    {
+        id : 3,
+        icon : FaUsers,
+        title : 'Skill Training Facilitator',
+        location : 'Ethopia, Mali, Uganda',
+        period : '2-6 months',
+        text : 'Lead women empowerment workshops and business skills  training programs',
+        requirements : ['Business experience', 'Training skills', 'Language proficiency']
+
+    },
+]
+export const aboutImpact = [
+    {
+        id : 1,
+        icon : FaHandsHelping,
+        value : 250000,
+        sym : '+',
+        title : 'Lives Transformed',
+        text : 'Individuals directly impacted by our programs'
+    },
+    {
+        id : 2,
+        icon : FaGraduationCap,
+        value : 50000,
+        sym : '+',
+        title : 'Students Educated',
+        text : 'Children recieving quality education'
+    },
+    {
+        id : 3,
+        icon : FaStethoscope,
+        value : 100000,
+        sym : '+',
+        title : 'Patients Treated',
+        text : 'Medical consultations and treatment provided'
+    },
+    {
+        id : 4,
+        icon : FaFemale,
+        value : 25000,
+        sym : '+',
+        title : 'Women Empowered',
+        text : 'Women trained in skills and leadership'
+    },
+    {
+        id : 5,
+        icon : GiPlantSeed,
+        value : 500000,
+        sym : '+',
+        title : 'Trees Planted',
+        text : 'Contributing to environmental restoration'
+    },
+    {
+        id : 6,
+        icon : FaGlobeAfrica,
+        value : 15,
+        title : 'Countries',
+        text : 'African nations where we operate'
+    },
+];
+
+export const Teams = [
+    {
+        id : 1,
+        image : teamBg2,
+        name : 'Dr Ebenezer Obomsi',
+        role : 'Founder & CEO',
+        text : 'Educational Leaderwith 15+ years in international development.PhD in development studies from Oxford University',
+        linkedin_url : 'https://www.goggle.com',
+        mail_url : 'ebeneseroboms@gmail.com',
+    },
+    {
+        id : 2,
+        image : teamBg1,
+        name : 'Sarah Williams',
+        role : 'Director of Healthcare',
+        text : 'Medical doctor specializing in public health and rural healthcare delivery.Former WHO consultant',
+        linkedin_url : 'https://www.goggle.com',
+        mail_url : 'sarahwilliams@gmail.com',
+    },
+    {
+        id : 3,
+        image : teamBg3,
+        name : 'Dr Aliko Maurice',
+        role : 'Director of Education',
+        text : 'Former teacher and education policy expert with expertise in curriculum development and teacher training',
+        linkedin_url : 'https://www.goggle.com',
+        mail_url : 'mauricealiks@gmail.com',
+    },
+    {
+        id : 4,
+        image : teamBg4,
+        name : 'Fatima Danlama',
+        role : 'Women Empowerment Lead',
+        text : 'Social entrepreneur and womens rights advocate with extensive experience in microfinance and skills training',
+        linkedin_url : 'http://www.goggle.com',
+        mail_url : 'danlamafatima@gmail.com'
+
+    },
+    {
+        id : 5,
+        image : teamBg5,
+        name : 'Harlean Jones',
+        role : 'Environmental Programs Director',
+        text : 'Environmental scientist focused on sustainable development and climate change adaptation in African countries',
+        linkedin_url : 'http://www.goggle.com',
+        mail_url : 'hearleean@gmail.com'
+    },
+    {
+        id : 6,
+        image : teamBg6,
+        name : 'Evelyn Richards',
+        role : 'Operations Manager',
+        text : 'Operations expert with background in logistics and program management across multiple african countries',
+        linkedin_url : 'http://www.goggle.com',
+        mail_url : 'richardevelyn@gmail.com'
+    }
+
+]
 export const choose = [
     {
         id :1,
@@ -331,4 +666,36 @@ export const mission = [
         style : 'bg-[#F3E8FF] text-purple-600',
         text : 'Integrity, compassion, sustainability, transparency, and community-driven solutions guide everything we do.We belive in local leadership and culturally sensitive approaches.'
     },
+];
+
+export const aboutValue = [
+    {
+        id : 1,
+        title : 'Compassion',
+        icon : FaHandsHelping,
+        style : 'bg-blue-100 text-blue-600',
+        text : 'We approach every community with empathy, understanding, and genuine care for their unique needs and challenges',
+    },
+    {
+        id : 2,
+        title : 'Sustainability',
+        icon : GiPlantSeed,
+        style : 'bg-yellow-100 text-yellow-400',
+        text : 'Our prgrams are designed to create long-term impact that continues  to benefits communities for generations'
+    },
+    {
+        id : 3,
+        title : 'Community-Led',
+        icon : FaPeopleCarry,
+        style : 'bg-green-100 text-green-600',
+        text : 'We belive the best solutions come from within communities themselves, and we support local leadership'
+    },
+    {
+        id : 4,
+        title : 'Innovation',
+        icon : FaLightbulb,
+        style : 'bg-purple-100 text-purple-600',
+        text : 'We embrace creative solutions and cutting-edge approaches to address complex development challenges'
+    },
+
 ]

@@ -25,27 +25,29 @@ export default function NavBar(){
                         </NavLink>
                     </li>
                     <li className='px-5 py-2 text-[13px] hover:rounded-sm text-gray-600 hover:text-blue-500 hover:font-semibold transition-all duration-500'>
-                        <NavLink>
+                        <NavLink to="/programs">
                             Programs
                         </NavLink>
                     </li>
                     <li className='px-5 py-2 text-[13px] hover:rounded-sm text-gray-600 hover:text-blue-500 hover:font-semibold transition-all'>
-                        <NavLink>
+                        <NavLink to="/getInvolved">
                             Get Involved
                         </NavLink>
                     </li>
                     <li className='px-5 py-2 text-[13px] hover:rounded-sm text-gray-600 hover:text-blue-500 hover:font-semibold transition-all'>
-                        <NavLink>
+                        <NavLink to="/blog">
                             Blog
                         </NavLink>
                     </li>
                     <li className='px-5 py-2 text-[13px] hover:rounded-sm text-gray-600 hover:text-blue-500 hover:font-semibold transition-all'>
-                        <NavLink>
+                        <NavLink to="/contacts">
                             Contact
                         </NavLink>
                     </li>
                     <button className='px-6 py-2 text-[13px] rounded-sm bg-blue-500 font-semibold text-white cursor-pointer hover:bg-blue-600 transition-all'>
-                        Donate Now
+                        <NavLink to="/donate">
+                            Donate Now
+                        </NavLink>
                     </button>
                 </ul>
             </nav>

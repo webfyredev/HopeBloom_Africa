@@ -64,7 +64,7 @@ export default function Home(){
                     ))}
                 </motion.div>
                 <div className="w-full mt-15 flex flex-col items-center">
-                    <div className="w-full md:w-[87%] md:h-80 h-auto bg-[#F9FAFB] rounded-md flex flex-col items-center p-5">
+                    <div className="w-full md:w-[87%] lg:h-80 h-auto bg-[#F9FAFB] rounded-md flex flex-col items-center p-5">
                         <motion.h3 {...scrollUpEffect} className="text-gray-900 text-2xl font-bold">
                             Our <span className="text-blue-600">Impact</span> So Far
                         </motion.h3>
@@ -86,7 +86,7 @@ export default function Home(){
                         </div>
                         <motion.div {...scrollLeftEffect} className="w-full md:w-[90%] h-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 md:p-5">
                             {impact2.map((impact) => (
-                                <motion.div {...cardHoverEffects} className="bg-white rounded-md flex flex-col items-center p-5">
+                                <motion.div {...cardHoverEffects} className="h-auto bg-white rounded-md flex flex-col items-center p-5">
                                     <h3 className={`font-bold text-${impact.color}`}>
                                         {impact.value}
                                     </h3>

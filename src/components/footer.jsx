@@ -41,16 +41,29 @@ export default function Footer(){
                                 
                             </li>
                             <li className='text-gray-300 text-[13px]'>
-                                Our Programs
+                                <Link to="/programs">
+                                    Our Programs
+                                </Link>
                             </li>
                             <li className='text-gray-300 text-[13px]'>
-                                Get Involved
+                                <Link to="/getInvolved">
+                                    Get Involved
+                                </Link>
                             </li>
                             <li className='text-gray-300 text-[13px]'>
-                                Blog
+                                <Link to="/blog">
+                                    Blog
+                                </Link>
                             </li>
                             <li className='text-gray-300 text-[13px]'>
-                                Donate
+                                <Link to="/contacts">
+                                    Contacts
+                                </Link>
+                            </li>
+                            <li className='text-gray-300 text-[13px]'>
+                                <Link to="/donate">
+                                    Donate
+                                </Link>
                             </li>
                         </ul>
                     </div>
