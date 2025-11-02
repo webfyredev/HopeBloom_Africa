@@ -5,8 +5,9 @@ import NavBar from "../components/navbar";
 import contactsImg from '../images/ngo/bg (10).webp';
 import { motion } from "framer-motion";
 import { buttonHoverEffects } from "../animations/effect";
-import { officeData } from "../data/projectData";
+import { officeData, contacts } from "../data/projectData";
 import { Link } from "react-router-dom";
+
 
 export default function Contacts(){
     return(
@@ -23,11 +24,11 @@ export default function Contacts(){
                 <h3 className="text-2xl font-bold mb-1">
                     Send Us a Message
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-xs md:text-sm text-gray-500">
                     Fill out the form below and we'll get back to you within 24hrs
                 </p>
-                <form className="w-[65%] h-auto px-10 py-10 flex flex-col rounded-md bg-[#F9FAFAB] shadow-md">
-                    <div className="w-full flex justify-between mb-2">
+                <form className="w-full lg:w-[65%] h-auto px-10 py-10 flex flex-col rounded-md bg-[#F9FAFAB] shadow-md">
+                    <div className="w-full md:flex md:flex-row flex flex-col justify-between mb-2">
                         <div className="flex flex-col w-full md:w-[48%]">
                             <label className="text-gray-900 text-xs font-semibold my-1">Full Name *</label>
                             <input type="text" placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
@@ -37,7 +38,7 @@ export default function Contacts(){
                             <input type="email" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                         </div>
                     </div>
-                    <div className="w-full flex justify-between mb-2">
+                    <div className="w-full md:flex md:flex-row flex flex-col justify-between mb-2">
                         <div className="flex flex-col w-full md:w-[48%]">
                             <label className="text-gray-900 text-xs font-semibold my-1">Phone Number</label>
                             <input type="text" placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
@@ -68,11 +69,54 @@ export default function Contacts(){
                         </motion.button>
                 </form>
             </div>
+            <div className="w-full flex flex-row border-1 border-red-500 py-10 px-15 bg-[F9FAFAB]">
+                <div className="w-[45%] h-100 border-1 border-red-500 flex flex-col p-5">
+                    <h3 className="text-2xl font-bold">
+                        Contact Information
+                    </h3>
+                    {contacts.map((contact) =>(
+                        <div className="flex flex-row border-1 border-red-500 py-3">
+                            <contact.icon  className="w-10 h-10 p-3 bg-blue-100 text-blue-600 rounded-md"/>
+                            <div className="flex flex-col border-1 border-red-500">
+                                <h3 className="text-[13px] font-semibold px-2 py-1">
+                                    {contact.title}
+                                </h3>
+                                <ul className="flex flex-col">
+                                    {contact.links.map((contact)=>(
+                                        <li>{contact}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+                <div className="w-[45%] h-auto p-5 ml-20 flex flex-col">
+                    <h3 className="text-2xl font-bold">
+                        Find Us
+                    </h3>
+                    <div className="w-full h-80 rounded-md overflow-hidden mt-2">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31564.814101404543!2d4.524056790551782!3d8.53798594675902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1036528d9c605049%3A0xf59fa28215d71df1!2sIlorin%2C%20Kwara!5e0!3m2!1sen!2sng!4v1762042015918!5m2!1sen!2sng"
+                            width="100%"
+                            height="100%"
+                            allowFullScreen=""
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div className="p-2 bg-gray-100 rounded-md mt-3">
+                        <p className="text-[10px]">
+                            Getting Here: Our office is located in the Westlands Business center, easily accessible by public transport and private vehicles.
+                            Parking is available on-site
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div className="flex flex-col w-full items-center mt-10">
                 <h3 className="font-bold text-2xl ">
                     Regional Offices
                 </h3>
-                 <div className="w-[85%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-white mt-3 gap-5 px-20 py-5">
+                 <div className="w-[90%] lg:w-[85%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-white mt-3 gap-5 lg:px-20 py-5">
                 {officeData.map((office) =>(
                     <div className="w-full shadow-md px-5 py-10 flex flex-col items-center font-semibold text-sm">
                         <h3>

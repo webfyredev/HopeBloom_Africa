@@ -1,4 +1,4 @@
-import {FaHandsHelping, FaEye, FaBullseye, FaHeart, FaGraduationCap, FaStethoscope, FaFemale,FaAward, FaHandshake, FaPeopleCarry, FaLightbulb, FaChartLine, FaArrowRight,FaQuoteRight, FaStar, FaMedal, FaMapMarkerAlt,FaGlobeAfrica, FaUser, FaUsers, FaLandmark, FaUniversity} from 'react-icons/fa'
+import {FaHandsHelping, FaEye, FaBullseye, FaHeart, FaGraduationCap, FaStethoscope, FaFemale,FaAward, FaHandshake, FaPeopleCarry, FaLightbulb, FaChartLine, FaArrowRight,FaQuoteRight, FaStar, FaMedal, FaMapMarkerAlt,FaGlobeAfrica, FaUser, FaUsers, FaLandmark, FaUniversity, FaEnvelope, FaPhoneAlt, FaClock} from 'react-icons/fa'
 import {GiPlantSeed, GiEarthAfricaEurope} from 'react-icons/gi'
 import {IoEyeOutline} from 'react-icons/io5'
 import testimonialBg1 from '../images/ngo/bg (7).webp';
@@ -21,6 +21,38 @@ import blogImg2 from '../images/ngo/bg (6).webp';
 import blogImg3 from '../images/ngo/blog2.webp';
 import blogImg4 from '../images/ngo/bg (10).webp'
 
+export const contacts = [
+    {
+        id : 1,
+        icon : FaEnvelope,
+        title : 'Email Address',
+        links : ['hopebloomafrica@gmail.com', 'partnershipafrica@gmail.com'],
+        text : '',
+
+    },
+    {
+        id : 2,
+        icon : FaPhoneAlt,
+        title : 'Phone Numbers',
+        links : ['+234 700 123 456', '+254 700 123 457'],
+        text : '',
+
+    },
+    {
+        id : 3,
+        icon : FaMapMarkerAlt, 
+        title : 'Office Address',
+        links : '',
+        text : 'HopeBloom_Africa Foundation Westlands Business Center, Abuja Nigeria',
+    },
+    {
+        id : 4,
+        icon : FaClock,
+        title : 'Office Hours',
+        link : '',
+        text : ['Monday - Friday:8:00 AM - 6:00 PM (EAT)', 'Saturday:9:00 AM - 2:00 PM (EAT)', 'Sunday: Closed'],
+    },
+];
 export const commitment = [
     {
         id : 1,
