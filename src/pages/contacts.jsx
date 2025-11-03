@@ -2,14 +2,18 @@ import Footer from "../components/footer";
 import HeadComponents from "../components/headComponents";
 import Heading from "../components/heading";
 import NavBar from "../components/navbar";
-import contactsImg from '../images/ngo/bg (10).webp';
+import contactsImg from '../images/ngo/bg (14).webp';
 import { motion } from "framer-motion";
-import { buttonHoverEffects } from "../animations/effect";
+import { buttonHoverEffects, cardScrollEffects, scrollLeftEffect, scrollRightEffect, scrollUpEffect } from "../animations/effect";
 import { officeData, contacts } from "../data/projectData";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export default function Contacts(){
+    useEffect(() =>{
+        document.title = 'Contacts | HopeBloom_Africa'
+    }, []);
     return(
         <>
             <NavBar />
@@ -20,7 +24,7 @@ export default function Contacts(){
             title_1 = 'Get in'
             title_2 = 'Touch'
             text = 'Have questions about our programs? Want to get involved? We would love to hear from you.Reach out to our team and lets work together to  transform Africa communities.'/>
-            <div className="w-full flex flex-col items-center mt-5 bg-white py-5">
+            <div className="w-full flex flex-col items-center mt-15 bg-white py-5 overflow-hidden">
                 <h3 className="text-2xl font-bold mb-1">
                     Send Us a Message
                 </h3>
@@ -69,33 +73,56 @@ export default function Contacts(){
                         </motion.button>
                 </form>
             </div>
-            <div className="w-full flex flex-row border-1 border-red-500 py-10 px-15 bg-[F9FAFAB]">
-                <div className="w-[45%] h-100 border-1 border-red-500 flex flex-col p-5">
+            <div className="w-full lg:flex lg:flex-row flex flex-col py-10 lg:px-15 md:px-10 px-5 bg-[F9FAFAB] overflow-hidden">
+                <motion.div {...scrollRightEffect} className="w-full lg:w-[45%] h-full flex flex-col p-5">
                     <h3 className="text-2xl font-bold">
                         Contact Information
                     </h3>
                     {contacts.map((contact) =>(
-                        <div className="flex flex-row border-1 border-red-500 py-3">
+                        <div key={contact.id} className="flex flex-row  py-3">
                             <contact.icon  className="w-10 h-10 p-3 bg-blue-100 text-blue-600 rounded-md"/>
-                            <div className="flex flex-col border-1 border-red-500">
+                            <div className="flex flex-col">
                                 <h3 className="text-[13px] font-semibold px-2 py-1">
                                     {contact.title}
                                 </h3>
-                                <ul className="flex flex-col">
-                                    {contact.links.map((contact)=>(
-                                        <li>{contact}</li>
-                                    ))}
+                                <ul className="flex flex-col px-2 space-y-1">
+                                    {contact.links.map((link, index) =>{
+                                        if(contact.type === "email"){
+                                            return(
+                                                <li key={index} className="text-xs text-gray-500">
+                                                    <Link to={`mailto:${link}`} className="hover:text-blue-600 cursor-pointer hover:font-semibold transition-all duration-300">
+                                                        {link}
+                                                    </Link>
+                                                </li>
+                                            )
+                                        }else if(contact.type === "phone"){
+                                            return(
+                                                <li key={index} className="text-xs text-gray-500 font-semibold">
+                                                    <Link to={`phoneto:${link}`} className="hover:text-blue-600 cursor-pointer">
+                                                        {link}
+                                                    </Link>
+                                                </li>
+                                            )
+                                        }
+                                        else{
+                                            return(
+                                                <li key={index} className="text-xs">
+                                                    {link}
+                                                </li>
+                                            )
+                                        }
+                                    })}
                                 </ul>
                             </div>
                         </div>
                     ))}
 
-                </div>
-                <div className="w-[45%] h-auto p-5 ml-20 flex flex-col">
+                </motion.div>
+                <motion.div {...scrollLeftEffect} className="w-full lg:w-[45%] h-full p-5 lg:ml-20 flex flex-col">
                     <h3 className="text-2xl font-bold">
                         Find Us
                     </h3>
-                    <div className="w-full h-80 rounded-md overflow-hidden mt-2">
+                    <div className="w-full h-85 rounded-md overflow-hidden mt-2">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31564.814101404543!2d4.524056790551782!3d8.53798594675902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1036528d9c605049%3A0xf59fa28215d71df1!2sIlorin%2C%20Kwara!5e0!3m2!1sen!2sng!4v1762042015918!5m2!1sen!2sng"
                             width="100%"
@@ -110,15 +137,15 @@ export default function Contacts(){
                             Parking is available on-site
                         </p>
                     </div>
-                </div>
+                </motion.div>
             </div>
-            <div className="flex flex-col w-full items-center mt-10">
-                <h3 className="font-bold text-2xl ">
+            <div className="flex flex-col w-full items-center mt-10 overflow-hidden">
+                <motion.h3 {...scrollUpEffect} className="font-bold text-2xl ">
                     Regional Offices
-                </h3>
+                </motion.h3>
                  <div className="w-[90%] lg:w-[85%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-white mt-3 gap-5 lg:px-20 py-5">
                 {officeData.map((office) =>(
-                    <div className="w-full shadow-md px-5 py-10 flex flex-col items-center font-semibold text-sm">
+                    <motion.div {...cardScrollEffects} key={office.id} className="w-full shadow-md px-5 py-10 flex flex-col items-center font-semibold text-sm">
                         <h3>
                             {office.name}
                         </h3>
@@ -131,7 +158,7 @@ export default function Contacts(){
                         <Link to={`mailto:${office.email}`} className="text-[11px] text-gray-500 mt-2">
                             {office.email}
                         </Link>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             </div>

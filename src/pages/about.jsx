@@ -12,9 +12,13 @@ import { useInView } from "react-intersection-observer";
 import BottomCTA from "../components/bottomCta";
 import aboutImgHeading from '../images/ngo/bg (1).webp'
 import HeadComponents from "../components/headComponents";
+import { useEffect } from "react";
 
 
 export default function About(){
+    useEffect(() =>{
+        document.title = "About | HopeBloom_Africa"
+    }, []);
     const {ref : sectionOneRef, inView:sectionOneInView} = useInView({
         triggerOnce : false,
         threshold : 0.4,
@@ -30,7 +34,7 @@ export default function About(){
             title_1 = 'About'
             title_2 = 'HopeBloom Africa'
             text = 'Founded in 2020, HopeBloom Africa emerged from  a simple belief; every African community deserves the opportunity fo flourish and reach its full potential'/>
-            <div className="lg:flex lg:flex-row justify-around w-full lg:h-100 mt-10 rounded-md bg-white md:p-5">
+            <div className="lg:flex lg:flex-row flex flex-col items-center justify-around w-full lg:h-100 mt-10 rounded-md bg-white md:p-5 overflow-hidden">
                 <motion.div {...scrollUpEffect} className="lg:w-[45%] w-full h-full flex flex-col p-5">
                     <h3 className="font-semibold text-2xl mb-3">
                         Our Story
@@ -48,7 +52,7 @@ export default function About(){
                         Today, HopeBloom Africa works hand-in-hand with local leaders governments, and international partners to create lasting change that blooms from within communities themselves
                     </p>
                 </motion.div>
-                <motion.img {...scrollLeftEffect} src={aboutImg} className="lg:w-[45%] lg:h-full w-full md:h-90 h-75 rounded-md mt-5 lg:mt-0 object-cover"/>
+                <motion.img {...scrollLeftEffect} src={aboutImg} className="lg:w-[45%] lg:h-full w-[95%] md:h-90 h-75 rounded-md mt-5 lg:mt-0 object-cover"/>
             </div>
             <div className="w-full lg:h-100 h-auto   flex items-center justify-center py-5 overflow-hidden">
                 <div className="w-[85%] h-full flex flex-col items-center py-5 bg-[#F9FAFB] rounded-md">

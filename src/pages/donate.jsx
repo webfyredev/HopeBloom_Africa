@@ -8,8 +8,12 @@ import { DonateData, DonateImpact, commitment } from "../data/projectData";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { FaHeart } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function Donate(){
+    useEffect(() =>{
+        document.title = 'Donate | HopeBloom_Africa'
+    }, []);
     const {ref : sectionOneRef, inView:sectionOneInView} = useInView({
         triggerOnce : false,
         threshold : 0.4,
@@ -125,15 +129,15 @@ export default function Donate(){
                 </form>
             </div>
             <div className="w-full flex flex-col items-center py-10">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mt-5">
+                    <motion.h3 {...scrollUpEffect} className="text-2xl md:text-3xl font-bold text-gray-900 mt-5">
                         Your <span className="text-blue-600">Impact</span> in Action
-                    </h3>
-                    <p className="w-90 md:w-150 mt-2 text-center text-gray-500 text-sm">
+                    </motion.h3>
+                    <motion.p {...scrollUpDelayEffect } className="w-90 md:w-150 mt-2 text-center text-gray-500 text-sm">
                         See exactly how your donations creates real change in Africa communities. Every dollar is carefully allocated to maximize impact and transparency.
-                    </p>
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5 mt-5">
+                    </motion.p>
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5 mt-5 overflow-hidden">
                     {DonateImpact.map((impact) =>(
-                        <div className="flex flex-col px-5 py-10 shadow-md bg-[#F9FAFB]">
+                        <motion.div {...cardScrollEffects} className="flex flex-col px-5 py-10 shadow-md bg-[#F9FAFB]">
                             <impact.icon  className={`w-11 h-11 p-2 rounded-md ${impact.style}`}/>
                             <h3 className="text-sm font-semibold my-3">
                                 {impact.title}
@@ -146,7 +150,7 @@ export default function Donate(){
                                 <li key={index} className="text-[12px] mt-2">{data}</li>
                             ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     ))}
                     </div>
             </div>

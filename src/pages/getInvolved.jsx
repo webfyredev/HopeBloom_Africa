@@ -7,8 +7,12 @@ import { involvedData, partnerships } from "../data/projectData";
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import { motion } from "framer-motion";
 import { scrollUpEffect, scrollUpDelayEffect, cardScrollEffects, buttonHoverEffects } from "../animations/effect";
+import { useEffect } from "react";
 
 export default function GetInvolved(){
+    useEffect(() =>{
+        document.title = 'Get-Involved | HopeBloom_Africa'
+    }, []);
     return(
         <>
             <NavBar />
@@ -28,7 +32,7 @@ export default function GetInvolved(){
                     Make a direct impact by volunteering with our programs.Join our team of dedicated volunteers working to transform Afrca communities
 
                 </motion.p>
-                <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5 overflow-hidden">
                 {involvedData.map((data) =>(
                     <motion.div {...cardScrollEffects} className="flex flex-col px-4 py-10 bg-[#F9FAFB] rounded-md">
                         <data.icon  className="w-11 h-11 p-2 rounded-md bg-blue-600 text-white"/>
@@ -62,7 +66,7 @@ export default function GetInvolved(){
                 ))}
                 </div>
             </div>
-            <div className="w-full flex items-center justify-center bg-white p-5">
+            <div className="w-full flex items-center justify-center bg-white p-5 overflow-hidden">
                 <div className="md:w-[95%] lg:w-[75%] rounded-md bg-[#F9FAFB] py-10 flex flex-col items-center">
                     <h3 className="text-2xl font-semibold mb-3">
                         Apply to Volunteer
@@ -115,7 +119,7 @@ export default function GetInvolved(){
                     </form>
                 </div>
             </div>
-            <div className="w-full flex flex-col items-center py-10 bg-[#F9FAFB]">
+            <div className="w-full flex flex-col items-center py-10 bg-[#F9FAFB] overflow-hidden">
                 <motion.h3 {...scrollUpEffect} className="text-3xl  font-bold">
                     Partnership <span className="text-blue-600">Opportunities</span>
                 </motion.h3>
@@ -149,7 +153,7 @@ export default function GetInvolved(){
                     <h3 className="text-2xl font-bold mb-3">
                         Partnership Inquiry
                     </h3>
-                    <form className="md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col">
+                    <form className="w-full md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col p-2">
                         <div className="w-full flex flex-col md:flex md:flex-row  md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Organization Name *</label>

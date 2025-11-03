@@ -19,15 +19,78 @@ import fStories2 from '../images/ngo/blog.webp';
 import blogImg1 from '../images/ngo/blog1.webp'
 import blogImg2 from '../images/ngo/bg (6).webp';
 import blogImg3 from '../images/ngo/blog2.webp';
-import blogImg4 from '../images/ngo/bg (10).webp'
+import blogImg4 from '../images/ngo/bg (10).webp';
+import programDataImg1 from '../images/ngo/bg (3).webp';
+import programDataImg2 from '../images/ngo/blog1.webp';
+import programDataImg3 from '../images/ngo/bg (7).webp';
+import programDataImg4 from '../images/ngo/bg (11).webp'
 
+export const programsData = [
+    {
+        id : 1,
+        program : 'Education',
+        image : programDataImg1,
+        style : 'bg-blue-100 text-blue-600',
+        title  : 'Education for All',
+        text : 'Building Brighter Futures Through Learning',
+        icon_style : 'bg-blue-600 text-white',
+        color : 'text-blue-600',
+        sub_text : 'Our comprehensive education program focuses on building schools, training teachers, providing learning materials and implmenting innovative teaching methods to ensure every child has access to quality education.',
+        rating : [{value : 25000, text : 'Women Empowered'}, {value:5000, text: 'Business Started'}, {value : 80, text : 'Training centers'}],
+        location : ['Kenya', 'Ghana', 'Nigeria', 'Ethopia', 'Mali'],
+        skills : ['Skills Training Programs', 'Microfinance & Loans', 'Leadership Development'],
+    },
+    {
+        id : 2,
+        style : 'bg-red-100 text-red-600',
+        program : 'Health',
+        image : programDataImg2,
+        title  : 'Healthcare Outreach',
+        text : 'Bringing Medical Care to Every Community',
+        icon_style : 'bg-red-600 text-white',
+        color : 'text-red-600',
+        sub_text : 'Mobile clinics, vaccination programs, health education, and medical infrastructure development to ensure healthcare access in the most remote and underserved communities across Africa',
+        rating : [{value : 100000, text : 'Patients Treated'}, {value:45, text: 'Mobile CLinics'}, {value : 1200, text : 'Health Workers Trained'}],
+        location : ['Kenya', 'Ghana', 'Rwanda', 'Senegal', 'Zambia'],
+        skills : ['Mobile Medical Clinics', 'Vaccination Campaigns', 'Maternal Health Programs'],
+    },
+    {
+        id : 3,
+        style : 'bg-purple-100 text-purple-600',
+        program : 'Women',
+        image : programDataImg3,
+        title  : 'Women Empowerment',
+        text : 'Empowerment Women as Agents of Change',
+        icon_style : 'bg-purple-600 text-white',
+        color : 'text-purple-600',
+        sub_text : 'Skills training, microfinance programs, leadership development, and enterpreneurship support to empower women economically and socially, creating ripple effects throughout their communities',
+        rating : [{value : 25000, text : 'Women Empowered'}, {value:5000, text: 'Business Started'}, {value : 80, text : 'Training Centers'}],
+        location : ['Kenya', 'Ghana', 'Nigeria', 'Ethiopia', 'Mali'],
+        skills : ['Skills Training Programs', 'Microfinanace & Loans', 'Leadership Development'],
+    },
+    {
+        id : 4,
+        style : 'bg-green-100 text-green-600',
+        program : 'Environmental',
+        image : programDataImg4,
+        title  : 'Environmental Sustainability',
+        text : 'Protecting Africa Natural Heritage',
+        icon_style : 'bg-green-600 text-white',
+        color : 'text-green-600',
+        sub_text : 'Tree planting initiatives, clean water projects, sustinable farming practices, and environmental education to combat climate change and protect Africa natural resources for future generations',
+        rating : [{value : 500000, text : 'Trees Planted'}, {value:200, text: 'Water Wells Built'}, {value : 15000, text : 'Farmers Trained'}],
+        location : ['Kenya', 'Ghana', 'Burkina-Fase', 'Niger', 'Chad'],
+        skills : ['Reforestation Programs', 'Clean Water Projects', 'Sustainable Agriculture'],
+    },
+    
+]
 export const contacts = [
     {
         id : 1,
         icon : FaEnvelope,
         title : 'Email Address',
         links : ['hopebloomafrica@gmail.com', 'partnershipafrica@gmail.com'],
-        text : '',
+        type : 'email'
 
     },
     {
@@ -35,22 +98,22 @@ export const contacts = [
         icon : FaPhoneAlt,
         title : 'Phone Numbers',
         links : ['+234 700 123 456', '+254 700 123 457'],
-        text : '',
+        type : 'phone',
 
     },
     {
         id : 3,
         icon : FaMapMarkerAlt, 
         title : 'Office Address',
-        links : '',
-        text : 'HopeBloom_Africa Foundation Westlands Business Center, Abuja Nigeria',
+        links : ['HopeBloom_Africa Foundation', 'Westlands Business Center','Abuja Nigeria'],
+        type : 'address'
     },
     {
         id : 4,
         icon : FaClock,
         title : 'Office Hours',
-        link : '',
-        text : ['Monday - Friday:8:00 AM - 6:00 PM (EAT)', 'Saturday:9:00 AM - 2:00 PM (EAT)', 'Sunday: Closed'],
+        type : 'address',
+        links : ['Monday - Friday: 8:00 AM - 6:00 PM (EAT)', 'Saturday: 9:00 AM - 2:00 PM (EAT)', 'Sunday: Closed'],
     },
 ];
 export const commitment = [
@@ -135,7 +198,7 @@ export const officeData = [
         email : 'centralafrica@hopebloomafrica@.org'
     },
     {
-        id : 1,
+        id : 3,
         name : 'South Africa Hub',
         location : 'Kigali Rwanada',
         phone : '+250781234567',

@@ -8,8 +8,12 @@ import { FaUser, FaCalendar, FaClock } from "react-icons/fa";
 import { buttonHoverEffects, cardHoverEffects, cardScrollEffects, scrollLeftEffect } from "../animations/effect";
 import { motion } from "framer-motion";
 import BottomCTA from "../components/bottomCta";
+import { useEffect } from "react";
 
 export default function Blog(){
+    useEffect(()=>{
+        document.title = 'Blogs | HopeBloom_Africa'
+    }, []);
     return (
         <>
             <NavBar />
@@ -26,7 +30,7 @@ export default function Blog(){
             <h3 className="text-2xl font-bold ml-10">
                 Featured Stories
             </h3>
-            <motion.div {...scrollLeftEffect} className="w-full grid grid-cols-1 sm-grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 p-5">
+            <motion.div {...scrollLeftEffect} className="w-full grid grid-cols-1 sm-grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 p-5 overflow-hidden">
                 {featured_stories.map((stories) =>(
                     <motion.div {...cardHoverEffects}  className="md:p-5 flex flex-col">
                         <img src={stories.image} className="w-full h-75 object-cover rounded-t-md shadow-md"/>
@@ -66,7 +70,7 @@ export default function Blog(){
                 ))}
             </motion.div>
             </div>
-            <div className="hidden lg:flex w-full py-3 px-15 my-3 bg-white">
+            <div className="hidden lg:flex w-full py-3 px-15 my-3 bg-white overflow-hidden">
                 {blogLinks.map((link) =>(
                     <div className="flex">
                         <button className="border-1 border-gray-300 px-4 py-1.5 text-xs rounded-md text-gray-500 mr-3 cursor-pointer hover:bg-blue-500 hover:text-white hover:border-none transisition-all duration-300">
@@ -76,11 +80,11 @@ export default function Blog(){
                 ))}    
             </div>
 
-            <div className="w-full flex flex-col md:px-10 lg:px-15 mt-5 py-5">
+            <div className="w-full flex flex-col md:px-10 lg:px-15 mt-5 py-5 overflow-hidden">
                 <h3 className="font-bold text-2xl ml-5">
                     Latest Updates
                 </h3>
-                <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 p-5">
+                <div className="w-[95%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 p-5 overflow-hidden">
                     {blogData.map((blog) =>(
                         <motion.div {...cardScrollEffects} className="flex flex-col mb-5">
                             <img src={blog.image} className="object-cover rounded-t-md"/>

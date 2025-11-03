@@ -9,8 +9,12 @@ import { useInView } from 'react-intersection-observer'
 import { scrollUpEffect, scrollUpDelayEffect,scrollLeftEffect, cardHoverEffects, scrollRightEffect, buttonHoverEffects} from "../animations/effect";
 import { motion } from "framer-motion";
 import { choose, stats, testimonial, programs, process, approach, impacts1, principles, impact2, mission} from "../data/projectData";
+import { useEffect } from "react";
 
 export default function Home(){
+    useEffect(() =>{
+        document.title = 'HopeBloom_Africa'
+    }, []);
     const {ref : sectionOneRef, inView:sectionOneInView} = useInView({
         triggerOnce : false,
         threshold : 0.4,
