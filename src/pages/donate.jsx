@@ -80,8 +80,8 @@ export default function Donate(){
                         </h3>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
-                                <label className="text-gray-900 text-xs font-semibold my-1">Full Name *</label>
-                                <input type="text" placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <label className="text-gray-900 text-xs font-semibold my-1">First Name *</label>
+                                <input type="text" placeholder="Enter your first name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Last Name *</label>
