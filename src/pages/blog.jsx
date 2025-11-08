@@ -9,6 +9,7 @@ import { buttonHoverEffects, cardHoverEffects, cardScrollEffects, scrollLeftEffe
 import { motion } from "framer-motion";
 import BottomCTA from "../components/bottomCta";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Blog(){
     useEffect(()=>{
@@ -61,8 +62,10 @@ export default function Blog(){
                             <p className="text-[12px] mb-2">
                                 {stories.text}
                             </p>
-                            <motion.button {...buttonHoverEffects} className="border-1 border-blue-600 px-7 text-xs font-semibold py-2 text-blue-600 rounded-md cursor-pointer mb-3">
-                                Read More 
+                            <motion.button {...buttonHoverEffects} className="border-1 border-blue-600 px-7 text-xs font-semibold py-2 text-blue-600 rounded-md cursor-pointer mb-3 cursor-pointer">
+                                <Link>
+                                    Read More 
+                                </Link>
                             </motion.button>
                         </div>
     
@@ -114,7 +117,9 @@ export default function Blog(){
                                 {blog.time} min read
                             </p>
                             <h3 className="text-xs font-semibold text-blue-600">
-                                Read More
+                                <Link>
+                                    Read More
+                                </Link>
                             </h3>
                             </div>
                             </div>

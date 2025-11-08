@@ -86,15 +86,15 @@ export default function Footer(){
                         <ul className='flex flex-col'>
                             <li className='text-gray-300 text-[13px] flex items-center py-2 hover:text-gray-100 hover:font-semibold hover:transition-all duration-300'>
                                 <FaEnvelope  className='mr-2'/> 
-                                <Link to="mailto:hopebloomafrica@gmail.com">
+                                <a href='mailto:hopebloomafrica@gmail.com'>
                                     hopebloomafrica@gmail.com
-                                </Link>
+                                </a>
                             </li>
                             <li className='text-gray-300 text-[13px] flex items-center py-2 hover:text-gray-100 hover:font-semibold hover:transition-all duration-300'>
                                 <FaPhoneAlt  className='mr-2'/> 
-                                <Link to="phoneto:+2349131580378">
+                                <a href="tel:+2349131580378">
                                     +234 913 1580 378
-                                </Link>
+                                </a>
                             </li>
                             <li className='text-gray-300 text-[13px] flex items-center py-2 hover:text-gray-100 hover:font-semibold hover:transition-all duration-300'>
                                 <FaMapMarkerAlt  className='mr-2'/> 

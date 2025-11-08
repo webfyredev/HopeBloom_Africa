@@ -10,7 +10,7 @@ import { scrollUpEffect, scrollUpDelayEffect,scrollLeftEffect, cardHoverEffects,
 import { motion } from "framer-motion";
 import { choose, stats, testimonial, programs, process, approach, impacts1, principles, impact2, mission} from "../data/projectData";
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 export default function Home(){
     useEffect(() =>{
         document.title = 'HopeBloom_Africa'
@@ -180,7 +180,9 @@ export default function Home(){
                     ))}
                 </div>
                 <motion.button {...buttonHoverEffects} className="mt-5 px-8 py-2.5 text-sm rounded-md cursor-pointer bg-blue-600 text-white font-semibold">
-                    Explore All Programs
+                    <Link to="/programs">
+                        Explore All Programs
+                    </Link>
                 </motion.button>
             </div>
             <div className="flex flex-col items-center bg-[#F9FAFB] py-10 mt-10 overflow-hidden">  

@@ -8,7 +8,7 @@ import { programsData } from "../data/projectData";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { scrollLeftEffect, scrollRightEffect, scrollUpDelayEffect, scrollUpEffect } from "../animations/effect";
+import { cardHoverEffects, scrollLeftEffect, scrollRightEffect, scrollUpDelayEffect, scrollUpEffect } from "../animations/effect";
 import { useEffect } from "react";
 
 export default function Programs(){
@@ -66,9 +66,9 @@ export default function Programs(){
                             <h3 className="font-semibold mt-3 text-sm">
                                 Active Locations:
                             </h3>
-                            <div className="flex w-full md:w-[75%] mt-5 justify-between ">
+                            <div className="flex w-full md:w-[75%] mt-5 justify-between">
                                 {program.location.map((location, index)=>(
-                                    <div key={index} className={`px-4 h-6 flex items-center text-[8px] md:text-[12px] bg-[#F9FAFB] rounded-md font-semibold shadow-xs ${program.color}`}>{location}</div>
+                                    <motion.div {...cardHoverEffects} key={index} className={`px-4 h-6 flex items-center text-[8px] md:text-[12px] bg-[#F9FAFB] rounded-md font-semibold shadow-xs ${program.color} ${program.hover_bg} transition-all duration-300 cursor-pointer`}>{location}</motion.div>
                                 ))}
                             </div>
                             <h3 className="font-semibold mt-3 text-sm">

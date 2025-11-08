@@ -7,14 +7,77 @@ import { involvedData, partnerships } from "../data/projectData";
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import { motion } from "framer-motion";
 import { scrollUpEffect, scrollUpDelayEffect, cardScrollEffects, buttonHoverEffects } from "../animations/effect";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function GetInvolved(){
+    const [volunteerData, setVolunteerData] = useState({
+        full_name : "", email : "", phone_number : "",
+        program : "", relevant_experience : "", availability : "",
+        reasons : "",
+    });
+    const [partnershipData, setPartnershipData] = useState({
+        organization_name : "", contacts_name : "", email_address : "", phone_number : "", partnership_type : "",
+        program_type : "", partnership_goals : "", values : "", preffered_timeline : "",
+    })
+    const [status, setStatus] = useState({message : "", type : ""});
+
+    const handlePartnershipChange = (e) => {
+        setPartnershipData({...partnershipData, [e.target.name] : e.target.value});
+    }
+    
+    const handleVolunteerChange = (e) =>{
+        setVolunteerData({...volunteerData, [e.target.name] : e.target.value})
+    };
+
+    const partnershipSubmission = async (e) => {
+        e.preventDefault();
+        try{
+            await axios.post("http://127.0.0.1:8000/partnerships/", partnershipData)
+            setStatus({message : "Inquiry submitted successfully. We will respond promptly", type:"success"} );
+            setPartnershipData({
+                organization_name : "", contacts_name : "", email_address : "", phone_number : "", partnership_type : "",
+                program_type : "", partnership_goals : "", values : "", preffered_timeline : "",
+            });
+            setTimeout(() => setStatus(""), 5000);
+
+        } catch(error){
+            setStatus({message : "Failed to register partnership organization. Try again later", type:"error"});
+            setTimeout(() => setStatus(""), 5000);
+        }
+    }
+
+    const volunteerSubmission = async (e) =>{
+        e.preventDefault();
+        try{
+            await axios.post("http://127.0.0.1:8000/volunteers/", volunteerData)
+            setStatus({message : "Thank you for signing to volunteer We'll reach out to you soon", type:"success"});
+            setVolunteerData({
+                full_name : "", email : "", phone_number : "",
+                program : "", relevant_experience : "", availability : "",
+                reasons : "",
+            });
+            setTimeout(() => setStatus(""), 5000);
+        } catch(error) {
+            setStatus({message : "Failed to register volunteer. Try again later", type:"error"});
+            setTimeout(() => setStatus(""), 5000);
+        };
+    };
     useEffect(() =>{
         document.title = 'Get-Involved | HopeBloom_Africa'
     }, []);
     return(
         <>
+            {status.message && (
+                <motion.div initial ={{opacity:0, y:-50}}
+                animate = {{opacity: 1, y:0}}
+                exit={{opacity : 0, y:-50}}
+                transition={{duration:0.4}}
+                className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-3 md:px-5 py-3 rounded-lg shadow-lg text-white text-xs text-center w-[90%] h-11 md:h-auto md:w-auto md:text-sm font-semibold ${status.type === "success" ? 'bg-green-500' : 'bg-red-500'}`}
+                >
+                    {status.message}
+                </motion.div>
+            )}
             <NavBar />
             <Heading 
             image = {involvedBg}
@@ -71,30 +134,30 @@ export default function GetInvolved(){
                     <h3 className="text-2xl font-semibold mb-3">
                         Apply to Volunteer
                     </h3>
-                    <form className="md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col">
+                    <form onSubmit={volunteerSubmission} className="md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col">
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Full Name *</label>
-                                <input type="text" placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="full_name" value={volunteerData.full_name} onChange={handleVolunteerChange} required placeholder="Enter your full_name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Email Address *</label>
-                                <input type="email" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="email" name="email" value={volunteerData.email} required onChange={handleVolunteerChange} placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col md:w-[48%] w-full">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Phone Number</label>
-                                <input type="text" placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="phone_number" value={volunteerData.phone_number} onChange={handleVolunteerChange} required placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col md:w-[48%] w-full mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Preferred Program *</label>
-                                <select name="" id="" placeholder="Select a program" className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
+                                <select name="program" value={volunteerData.program} onChange={handleVolunteerChange} required className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
                                     <option value="" disabled>Select a  Program</option>
-                                    <option value="">Education</option>
-                                    <option value="">Healthcare Outreach</option>
-                                    <option value="">Women Empowerment</option>
-                                    <option value="">Environmental Sustainability</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Healthcare Outreach">Healthcare Outreach</option>
+                                    <option value="Women Empowerment">Women Empowerment</option>
+                                    <option value="Environmental Sustainability">Environmental Sustainability</option>
 
                                 </select>
                                 {/* <input type="email" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/> */}
@@ -102,18 +165,18 @@ export default function GetInvolved(){
                         </div>
                         <div className="w-full">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Relevant Experience</label>
-                            <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="relevant_experience" value={volunteerData.relevant_experience} onChange={handleVolunteerChange} required placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Availability</label>
-                                <input type="text" placeholder="e.g, 3 months starting January 2025"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="availability" value={volunteerData.availability} onChange={handleVolunteerChange} required placeholder="e.g, 3 months starting January 2025"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Why do you want to volunteer with HopeBloom_Africa</label>
-                            <textarea name="" placeholder="Share your motivation and what you hope to achieve" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="reasons" value={volunteerData.reasons} onChange={handleVolunteerChange} required  placeholder="Share your motivation and what you hope to achieve" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
                         </div>
-                        <motion.button {...buttonHoverEffects} className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
+                        <motion.button {...buttonHoverEffects} type="submit" className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
                             Submit Application
                         </motion.button>
                     </form>
@@ -153,47 +216,47 @@ export default function GetInvolved(){
                     <h3 className="text-2xl font-bold mb-3">
                         Partnership Inquiry
                     </h3>
-                    <form className="w-full md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col p-2">
+                    <form onSubmit={partnershipSubmission} className="w-full md:w-[95%] lg:w-[70%] h-auto mt-3 flex items-center flex-col p-2">
                         <div className="w-full flex flex-col md:flex md:flex-row  md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Organization Name *</label>
-                                <input type="text" placeholder="Enter your organization name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="organization_name" value={partnershipData.organization_name} onChange={handlePartnershipChange} required placeholder="Enter your organization name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Contacts Name *</label>
-                                <input type="name" placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="name" name="contacts_name" value={partnershipData.contacts_name} onChange={handlePartnershipChange} required placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Email Address *</label>
-                                <input type="email" placeholder="Ente your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="email" name="email_address" value={partnershipData.email_address} onChange={handlePartnershipChange} required  placeholder="Ente your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Phone Number </label>
-                                <input type="text" placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="phone_number" value={partnershipData.phone_number} onChange={handlePartnershipChange} required placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Partnership Type *</label>
-                                <select name="" id="" placeholder="Select a program" className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
+                                <select name="partnership_type" value={partnershipData.partnership_type} onChange={handlePartnershipChange} required className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
                                     <option value="" disabled>Select a Partners</option>
-                                    <option value="">Corporate Partnerships</option>
-                                    <option value="">NGO Collaborations</option>
-                                    <option value="">Government Partnerships</option>
-                                    <option value="">Academic Institutions</option>
+                                    <option value="Corporate Partnerships">Corporate Partnerships</option>
+                                    <option value="NGO Collaborations">NGO Collaborations</option>
+                                    <option value="Government Partnerships">Government Partnerships</option>
+                                    <option value="Academic Institutions">Academic Institutions</option>
 
                                 </select>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Organization Type *</label>
-                                <select name="" id="" placeholder="Select a program" className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
+                                <select name="program_type" value={partnershipData.program_type} onChange={handlePartnershipChange} required className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
                                     <option value="" disabled>Select a organization type</option>
-                                    <option value="">Education</option>
-                                    <option value="">Healthcare Outreach</option>
-                                    <option value="">Women Empowerment</option>
-                                    <option value="">Environmental Sustainability</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Healthcare Outreach">Healthcare Outreach</option>
+                                    <option value="Women Empowerment">Women Empowerment</option>
+                                    <option value="Environmental Sustainability">Environmental Sustainability</option>
 
                                 </select>
                                 {/* <input type="email" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/> */}
@@ -201,19 +264,19 @@ export default function GetInvolved(){
                         </div>
                         <div className="w-full">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Partnership Goals *</label>
-                            <textarea name="" placeholder="Describe what you hope to achieve through this partnership" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="partnership_goals" value={partnershipData.partnership_goals} onChange={handlePartnershipChange} required placeholder="Describe what you hope to achieve through this partnership" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
                         </div>
                         
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Resources You Can Offer</label>
-                            <textarea name="" placeholder="e.g, funding, expertise, volunteers, equipment..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-20 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="values" value={partnershipData.values} onChange={handlePartnershipChange} required placeholder="e.g, funding, expertise, volunteers, equipment..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-20 bg-white border-1 border-gray-400 rounded-md"></textarea>
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Preferred Timeline</label>
-                                <input type="text" placeholder="e.g, Start in Q2 2025, 2-year partnership"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="preffered_timeline" value={partnershipData.preffered_timeline} onChange={handlePartnershipChange} required placeholder="e.g, Start in Q2 2025, 2-year partnership"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                         </div>
-                        <motion.button {...buttonHoverEffects} className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
+                        <motion.button {...buttonHoverEffects} type="submit" className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
                             Submit Inquiry
                         </motion.button>
                     </form>

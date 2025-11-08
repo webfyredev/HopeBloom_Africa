@@ -8,9 +8,32 @@ import { DonateData, DonateImpact, commitment } from "../data/projectData";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { FaHeart } from "react-icons/fa";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
 export default function Donate(){
+    const [formData, setFormData] = useState({amount : "", program : "", first_name : "", last_name:"", email : "", phone_number : "", 
+        address : "", city : "", country : "", dedication : "", comments : ""
+    });
+    const [status, setStatus] = useState("");
+    const handleChange = (e) =>{
+        setFormData({...formData, [e.target.name] : e.target.value});
+    }
+    const handlesubmit = async (e) =>{
+        e.preventDefault();
+        try{
+            await axios.post("http://127.0.0.1:8000/donations/", formData);
+            setStatus("Thanks! Your donation went through successfully");
+            setFormData({amount : "", program : "", first_name : "", last_name:"", email : "", phone_number : "", 
+                            address : "", city : "", country : "", dedication : "", comments : ""});
+            setTimeout(() => setStatus(""), 5000);
+        } catch(error) {
+            setStatus("Failed to send donations. Try again")
+            setTimeout(() => setStatus(""), 5000);
+
+        }
+
+    }
     useEffect(() =>{
         document.title = 'Donate | HopeBloom_Africa'
     }, []);
@@ -24,6 +47,16 @@ export default function Donate(){
     })
     return(
         <>
+            {status && (
+                <motion.div initial ={{opacity:0, y:-50}}
+                animate = {{opacity: 1, y:0}}
+                exit={{opacity : 0, y:-50}}
+                transition={{duration:0.4}}
+                className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-lg shadow-lg text-white font-semibold ${status.includes("success") ? 'bg-green-500' : 'bg-red-500'}`}
+                >
+                    {status}
+                </motion.div>
+            )}
             <NavBar />
             <Heading 
             image = {donateImg}
@@ -49,7 +82,7 @@ export default function Donate(){
                 </div>
             </div>
             <div className="w-full flex justify-center items-center bg-[#F9FAFAB] p-5">
-                <form className="w-full lg:w-[65%] flex flex-col rounded-t-md bg-white shadow-md">
+                <form onSubmit={handlesubmit} className="w-full lg:w-[65%] flex flex-col rounded-t-md bg-white shadow-md">
                     <div className="w-full h-40 flex flex-col items-center bg-blue-600 rounded-t-md">
                         <FaHeart  className=" mt-10 w-8 h-8 text-white bg-transparent"/>
                         <h3 className="mt-2 font-bold text-xl text-white">
@@ -63,16 +96,16 @@ export default function Donate(){
                     <div className="w-full h-full flex flex-col px-5">
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Donation Amount</label>
-                                <input type="number" placeholder="$ Enter amount"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="number" placeholder="$ Enter amount" name="amount" value={formData.amount} onChange={handleChange} required  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                         </div>
-                        <label className="text-gray-900 text-xs font-semibold my-2">Choose Program </label>
-                        <select name="" id="" placeholder="Select a program" className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
-                            <option value="" disabled>Select a  Program</option>
-                            <option value="">Education</option>
-                            <option value="">Healthcare Outreach</option>
-                            <option value="">Women Empowerment</option>
-                            <option value="">Environmental Sustainability</option>
+                        <label className="text-gray-900 text-xs font-semibold my-2">Choose Program *</label>
+                        <select name="program" value={formData.program} onChange={handleChange} required className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
+                            <option value="" disabled>Select a Program</option>
+                            <option value="Education">Education</option>
+                            <option value="Healthcare Outreach">Healthcare Outreach</option>
+                            <option value="Women Empowerment">Women Empowerment</option>
+                            <option value="Environmental Sustainability">Environmental Sustainability</option>
 
                         </select>
                         <h3 className="text-[13px] font-semibold my-2">
@@ -81,48 +114,48 @@ export default function Donate(){
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">First Name *</label>
-                                <input type="text" placeholder="Enter your first name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="first_name" value={formData.first_name} onChange={handleChange}  required placeholder="Enter your first name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Last Name *</label>
-                                <input type="email" placeholder="Enter your last name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} required placeholder="Enter your last name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Email Address *</label>
-                                <input type="text" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="email" name="email" value={formData.email} required onChange={handleChange}  placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
-                                <label className="text-gray-900 text-xs font-semibold my-1">Phone Number</label>
-                                <input type="email" placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <label className="text-gray-900 text-xs font-semibold my-1">Phone Number *</label>
+                                <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} required  placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Address</label>
-                                <input type="text" placeholder="Home Address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" placeholder="Home Address" name="address" value={formData.address} onChange={handleChange} required  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                         </div>
                         <div className="w-full flex flex-col md:flex md:flex-row md:justify-between mb-3">
                             <div className="flex flex-col w-full md:w-[48%]">
                                 <label className="text-gray-900 text-xs font-semibold my-1">City </label>
-                                <input type="text" placeholder="City/Province"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" placeholder="City/Province" name="city" value={formData.city} onChange={handleChange} required  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                             <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                                 <label className="text-gray-900 text-xs font-semibold my-1">Country</label>
-                                <input type="text" placeholder="Country"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" placeholder="Country" name="country" value={formData.country} onChange={handleChange} required  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             </div>
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Dedication (Optional)</label>
-                                <input type="text" placeholder="In honour/memory of"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" placeholder="In honour/memory of" name="dedication" value={formData.dedication} onChange={handleChange} required  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                         </div>
                         <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Comments (Optional)</label>
-                            <textarea name="" placeholder="Any additional comments" className="outline-blue-100 mt-1 text-xs p-2 w-full h-20 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="comments" value={formData.comments} onChange={handleChange} placeholder="Any additional comments" required className="outline-blue-100 mt-1 text-xs p-2 w-full h-20 bg-white border-1 border-gray-400 rounded-md"></textarea>
                         </div>
-                        <motion.button {...buttonHoverEffects} className="my-5 text-sm cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
+                        <motion.button {...buttonHoverEffects} type="submit" className="my-5 text-sm cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
                             Send Donation
                         </motion.button>
                     </div>

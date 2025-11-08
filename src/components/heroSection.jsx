@@ -2,7 +2,7 @@
 import React from "react";
 import { Swiper, SwiperSlide, useSwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -87,10 +87,14 @@ function SlideInner({ slide }) {
         </motion.p>
         <motion.div {...scrollLeftEffect} className="md:w-auto md:flex md:flex-row flex flex-col items-center space-y-3 md:space-y-0 w-full mt-5 md:mt-3 space-x-3">
             <motion.button {...buttonHoverEffects} className="md:flex md:px-9  md:py-3 w-60 md:w-auto py-3 ml-4 md:ml-0 bg-white text-blue-500 text-xs items-center justify-center md:text-sm font-semibold rounded-md cursor-pointer">
+              <Link to="/donate">
                 {slide.btn_text1}
+              </Link>
             </motion.button>
             <motion.button {...buttonHoverEffects} className="md:flex md:px-9 md:py-3 w-60 md:w-auto py-3 bg-[#FACC15] text-white text-xs items-center justify-center md:text-sm font-semibold rounded-md cursor-pointer">
-                {slide.btn_text2}
+                <Link to="/getInvolved">
+                  {slide.btn_text2}
+                </Link>
             </motion.button>
         </motion.div>
       </div>

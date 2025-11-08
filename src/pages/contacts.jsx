@@ -7,15 +7,49 @@ import { motion } from "framer-motion";
 import { buttonHoverEffects, cardScrollEffects, scrollLeftEffect, scrollRightEffect, scrollUpEffect } from "../animations/effect";
 import { officeData, contacts } from "../data/projectData";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 export default function Contacts(){
+    const [contactsData, setContactsData] = useState({
+        full_name : "", email : "", phone_number : "", inquiry_type : "",
+        subject : "", message : "",
+    });
+    const [status, setStatus] = useState({message : "", type : "",})
+    const handleContactsChange = (e) => {
+        setContactsData({...contactsData, [e.target.name] : e.target.value})
+    }
+    const handleContactSubmission = async(e) => {
+        e.preventDefault();
+        try{
+            await axios.post("http://127.0.0.1:8000/contacts/", contactsData);
+            setStatus({message: "Message sent. Thank your for contacting us!", type:"success"});
+            setContactsData({
+                full_name : "", email : "", phone_number : "", inquiry_type : "",
+                subject : "", message : "",
+            });
+            setTimeout(() => setStatus(""), 5000);
+        } catch(error){
+            setStatus({message: "Unable to send message. Try again later", type:"error"});
+            setTimeout(() => setStatus(""), 5000);
+        }
+    }
     useEffect(() =>{
         document.title = 'Contacts | HopeBloom_Africa'
     }, []);
     return(
         <>
+            {status.message && (
+                <motion.div initial ={{opacity:0, y:-50}}
+                animate = {{opacity: 1, y:0}}
+                exit={{opacity : 0, y:-50}}
+                transition={{duration:0.4}}
+                className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-3 md:px-5 py-3 rounded-lg shadow-lg text-xs text-center w-[90%] h-11 md:h-auto md:w-auto md:text-sm text-white font-semibold ${status.type === "success" ? 'bg-green-500' : 'bg-red-500'}`}
+                >
+                    {status.message}
+                </motion.div>
+            )}
             <NavBar />
             <Heading
             image = {contactsImg} 
@@ -31,44 +65,44 @@ export default function Contacts(){
                 <p className="text-xs md:text-sm text-gray-500">
                     Fill out the form below and we'll get back to you within 24hrs
                 </p>
-                <form className="w-full lg:w-[65%] h-auto px-10 py-10 flex flex-col rounded-md bg-[#F9FAFAB] shadow-md">
+                <form onSubmit={handleContactSubmission} className="w-full lg:w-[65%] h-auto px-10 py-10 flex flex-col rounded-md bg-[#F9FAFAB] shadow-md">
                     <div className="w-full md:flex md:flex-row flex flex-col justify-between mb-2">
                         <div className="flex flex-col w-full md:w-[48%]">
                             <label className="text-gray-900 text-xs font-semibold my-1">Full Name *</label>
-                            <input type="text" placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                            <input type="text" name="full_name" value={contactsData.full_name} onChange={handleContactsChange} required placeholder="Enter your name"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                         </div>
                         <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                             <label className="text-gray-900 text-xs font-semibold my-1">Email Address *</label>
-                            <input type="email" placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                            <input type="email" name="email" value={contactsData.email} onChange={handleContactsChange} required placeholder="Enter your email address"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                         </div>
                     </div>
                     <div className="w-full md:flex md:flex-row flex flex-col justify-between mb-2">
                         <div className="flex flex-col w-full md:w-[48%]">
                             <label className="text-gray-900 text-xs font-semibold my-1">Phone Number</label>
-                            <input type="text" placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                            <input type="text" maxLength={20} name="phone_number" value={contactsData.phone_number} onChange={handleContactsChange} required placeholder="Enter your phone number"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                         </div>
                         <div className="flex flex-col w-full md:w-[48%] mt-3 md:mt-0">
                             <label className="text-gray-900 text-xs font-semibold my-1">Inquiry Type</label>
-                                <select name="" id="" placeholder="Select a program" className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
+                                <select name="inquiry_type" value={contactsData.inquiry_type} onChange={handleContactsChange} required className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md">
                                     <option value="" disabled>Select a  inquiry type</option>
-                                    <option value="">Education</option>
-                                    <option value="">Healthcare Outreach</option>
-                                    <option value="">Women Empowerment</option>
-                                    <option value="">Environmental Sustainability</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Healthcare Outreach">Healthcare Outreach</option>
+                                    <option value="Women Empowerment">Women Empowerment</option>
+                                    <option value="Environmental Sustainability">Environmental Sustainability</option>
 
                                 </select>
                         </div>
                     </div>
                     <div className="w-full my-2">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Subject *</label>
-                                <input type="text" placeholder="Brief description of your inquiry"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
+                                <input type="text" name="subject" maxLength={255} value={contactsData.subject} onChange={handleContactsChange} required placeholder="Brief description of your inquiry"  className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"/>
                             {/* <textarea name="" placeholder="Tell us about your relevant experience and skills..." className="outline-blue-100 mt-1 text-xs p-2 w-full h-10 bg-white border-1 border-gray-400 rounded-md"></textarea> */}
                     </div>
                     <div className="w-full">
                             <label htmlFor="" className="text-gray-900 text-xs font-semibold my-1">Message *</label>
-                            <textarea name="" placeholder="Please provide details about your inquiry" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
+                            <textarea name="message" value={contactsData.message} onChange={handleContactsChange} required placeholder="Please provide details about your inquiry" className="outline-blue-100 mt-1 text-xs p-2 w-full h-25 bg-white border-1 border-gray-400 rounded-md"></textarea>
                     </div>
-                    <motion.button {...buttonHoverEffects} className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
+                    <motion.button {...buttonHoverEffects} type="submit" className="mt-5 text-sm  cursor-pointer bg-blue-600 rounded-md font-semibold text-white px-7 py-2.5">
                             Send Message
                         </motion.button>
                 </form>
@@ -90,17 +124,17 @@ export default function Contacts(){
                                         if(contact.type === "email"){
                                             return(
                                                 <li key={index} className="text-xs text-gray-500">
-                                                    <Link to={`mailto:${link}`} className="hover:text-blue-600 cursor-pointer hover:font-semibold transition-all duration-300">
+                                                    <a href={`mailto:${link}`} className="hover:text-blue-600 cursor-pointer hover:font-semibold transition-all duration-300">
                                                         {link}
-                                                    </Link>
+                                                    </a>
                                                 </li>
                                             )
                                         }else if(contact.type === "phone"){
                                             return(
                                                 <li key={index} className="text-xs text-gray-500 font-semibold">
-                                                    <Link to={`phoneto:${link}`} className="hover:text-blue-600 cursor-pointer">
+                                                    <a href={`tel:${link}`} className="hover:text-blue-600 cursor-pointer">
                                                         {link}
-                                                    </Link>
+                                                    </a>
                                                 </li>
                                             )
                                         }
@@ -152,12 +186,12 @@ export default function Contacts(){
                         <p className="text-[12px] my-1 text-gray-500">
                             {office.location}
                         </p>
-                        <Link to={`phoneto:${office.phone}`} className="text-[10px] text-gray-500">
+                        <a href={`tel:${office.phone}`} className="text-[10px] text-gray-500">
                             {office.phone}
-                        </Link>
-                        <Link to={`mailto:${office.email}`} className="text-[11px] text-gray-500 mt-2">
+                        </a>
+                        <a href={`mailto:${office.email}`} className="text-[11px] text-gray-500 mt-2">
                             {office.email}
-                        </Link>
+                        </a>
                     </motion.div>
                 ))}
             </div>

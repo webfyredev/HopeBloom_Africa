@@ -120,12 +120,12 @@ export default function About(){
                                 {team.text}
                             </p>
                             <div className="flex items-center">
-                                <Link to={`mailto:${team.linkedin_url}`}>
+                                <a href={`mailto:${team.linkedin_url}`}>
                                     <FaLinkedinIn  className="text-gray-500 mr-3 h-5"/>
-                                </Link>
-                                <Link to={`mailto:${team.mail_url}`}>
+                                </a>
+                                <a href={`mailto:${team.mail_url}`}>
                                     <FaEnvelope className="text-gray-500  h-5" />
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </motion.div>
