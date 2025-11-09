@@ -22,7 +22,7 @@ export default function Contacts(){
     }
     const validateForm = () => {
         const {full_name, email, phone_number, inquiry_type, subject, message} = contactsData;
-        if(!/^[a-zA-Z] {2,}$/.test(full_name.trim())){
+        if(!/^[a-zA-Z ]{2,}$/.test(full_name.trim())){
             setStatus({message : "Enter a valid name", type : "error"});
             return false;
         }
