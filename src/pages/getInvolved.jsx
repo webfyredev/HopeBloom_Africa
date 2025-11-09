@@ -33,7 +33,7 @@ export default function GetInvolved(){
     const partnershipSubmission = async (e) => {
         e.preventDefault();
         try{
-            await axios.post("http://127.0.0.1:8000/partnerships/", partnershipData)
+            await axios.post("https://hopebloom-africa-backend1.onrender.com/partnerships/", partnershipData)
             setStatus({message : "Inquiry submitted successfully. We will respond promptly", type:"success"} );
             setPartnershipData({
                 organization_name : "", contacts_name : "", email_address : "", phone_number : "", partnership_type : "",
@@ -50,7 +50,7 @@ export default function GetInvolved(){
     const volunteerSubmission = async (e) =>{
         e.preventDefault();
         try{
-            await axios.post("http://127.0.0.1:8000/volunteers/", volunteerData)
+            await axios.post("https://hopebloom-africa-backend1.onrender.com/volunteers/", volunteerData)
             setStatus({message : "Thank you for signing to volunteer We'll reach out to you soon", type:"success"});
             setVolunteerData({
                 full_name : "", email : "", phone_number : "",

@@ -22,7 +22,7 @@ export default function Donate(){
     const handlesubmit = async (e) =>{
         e.preventDefault();
         try{
-            await axios.post("http://127.0.0.1:8000/donations/", formData);
+            await axios.post("https://hopebloom-africa-backend1.onrender.com/donations/", formData);
             setStatus("Thanks! Your donation went through successfully");
             setFormData({amount : "", program : "", first_name : "", last_name:"", email : "", phone_number : "", 
                             address : "", city : "", country : "", dedication : "", comments : ""});

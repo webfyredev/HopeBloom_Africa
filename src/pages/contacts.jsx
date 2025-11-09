@@ -23,7 +23,7 @@ export default function Contacts(){
     const handleContactSubmission = async(e) => {
         e.preventDefault();
         try{
-            await axios.post("http://127.0.0.1:8000/contacts/", contactsData);
+            await axios.post("https://hopebloom-africa-backend1.onrender.com/contacts/", contactsData);
             setStatus({message: "Message sent. Thank your for contacting us!", type:"success"});
             setContactsData({
                 full_name : "", email : "", phone_number : "", inquiry_type : "",
