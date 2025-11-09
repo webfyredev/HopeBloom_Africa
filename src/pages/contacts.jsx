@@ -20,8 +20,42 @@ export default function Contacts(){
     const handleContactsChange = (e) => {
         setContactsData({...contactsData, [e.target.name] : e.target.value})
     }
+    const validateForm = () => {
+        const {full_name, email, phone_number, inquiry_type, subject, message} = contactsData;
+        if(!/^[a-zA-Z] {2,}$/.test(full_name.trim())){
+            setStatus({message : "Enter a valid name", type : "error"});
+            return false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+            setStatus({ message: "Enter a valid email address", type: "error" });
+            return false;
+        }
+
+        if (!/^\d{10,20}$/.test(phone_number.trim())) {
+            setStatus({ message: "Enter a valid phone number (10-20 digits)", type: "error" });
+            return false;
+        }
+
+        if (inquiry_type.trim() === "") {
+            setStatus({ message: "Please select an inquiry type", type: "error" });
+            return false;
+        }
+
+        if (subject.trim().length < 3) {
+            setStatus({ message: "Subject must be at least 3 characters", type: "error" });
+            return false;
+        }
+
+        if (message.trim().length < 10) {
+            setStatus({ message: "Message must be at least 10 characters", type: "error" });
+            return false;
+        }
+
+        return true;
+    }
     const handleContactSubmission = async(e) => {
         e.preventDefault();
+        if (!validateForm()) return;
         try{
             await axios.post("https://hopebloom-africa-backend1.onrender.com/contacts/", contactsData);
             setStatus({message: "Message sent. Thank your for contacting us!", type:"success"});
@@ -29,10 +63,11 @@ export default function Contacts(){
                 full_name : "", email : "", phone_number : "", inquiry_type : "",
                 subject : "", message : "",
             });
-            setTimeout(() => setStatus(""), 5000);
+            setTimeout(() => setStatus({message : "", type: ""}), 5000);
         } catch(error){
             setStatus({message: "Unable to send message. Try again later", type:"error"});
-            setTimeout(() => setStatus(""), 5000);
+            setTimeout(() => setStatus({message : "", type: ""}), 5000);
+
         }
     }
     useEffect(() =>{
