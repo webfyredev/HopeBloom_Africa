@@ -65,7 +65,7 @@ export default function Donate(){
                 <motion.h3 {...scrollUpEffect} className="text-2xl md:text-3xl font-bold mt-5">
                     Make a <span className="text-blue-600">Difference</span>
                 </motion.h3>
-                <motion.p {...scrollUpDelayEffect} className="mt-2 md:w-130 text-[13px] text-center text-gray-600">
+                <motion.p {...scrollUpDelayEffect} className="mt-2 w-90 md:w-130 text-[13px] text-center text-gray-600">
                     Your donation directly transforms live across Africa. Every contribution, no matter the size, create lasting impact in communities that needs it most
                 </motion.p>
                 <div className="w-[65%] py-5 my-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

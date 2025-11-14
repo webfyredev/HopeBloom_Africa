@@ -68,14 +68,14 @@ function SlideInner({ slide }) {
           {slide.title}
         </motion.h1>
 
-        <motion.h3
-          className="text-xs md:text-xl font-semibold leading-tight text-white text-center"
-          initial={{ opacity: 0, x: -40 }}
-          animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-          transition={{ delay: 0.35, duration: 0.7 }}
-        >
-          {slide.c_text}
-        </motion.h3>
+          <motion.h3
+            className="text-xs md:text-xl font-semibold leading-tight text-white text-center"
+            initial={{ opacity: 0, x: -40 }}
+            animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ delay: 0.35, duration: 0.7 }}
+          >
+            {slide.c_text}
+          </motion.h3>
 
         <motion.p
           className="hidden md:flex text-sm mb-6 text-white text-center md:w-150 mt-2"
