@@ -68,9 +68,9 @@ export default function Donate(){
                 <motion.p {...scrollUpDelayEffect} className="mt-2 w-90 md:w-130 text-[13px] text-center text-gray-600">
                     Your donation directly transforms live across Africa. Every contribution, no matter the size, create lasting impact in communities that needs it most
                 </motion.p>
-                <div className="w-[65%] py-5 my-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="w-[90%] lg:w-[65%] py-5 my-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {DonateData.map((donate) =>(
-                        <motion.div {...cardScrollEffects} ref={sectionOneRef} className="shadow-md p-5 bg-[#F9FAFAB] rounded-md flex flex-col items-center">
+                        <motion.div {...cardScrollEffects} ref={sectionOneRef} className="shadow-md p-5 bg-[#F9FAFAB] rounded-md flex flex-col items-center mb-3 lg:mb-0">
                             <h2 className="text-blue-600 font-bold text-xl">
                                 ${sectionOneInView ? <CountUp end={donate.rate} duration={5}/> : 0}
                             </h2>
