@@ -41,7 +41,7 @@ export default function Home(){
                 <motion.div {...scrollLeftEffect} className="mt-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5">
                     {mission.map((data) => (
                         <motion.div {...cardHoverEffects} key={data.id} className="flex flex-col items-center shadow-md rounded-sm py-5 px-10 md:px-5 mb-5">
-                            <data.icon className={`w-15 h-15 p-3.5 rounded-full ${data.style}`} />
+                            <data.icon className={`w-13 h-13 p-4 rounded-full ${data.style}`} />
                             <h3 className="font-semibold mt-3 text-sm">
                                 {data.title}
                             </h3>
