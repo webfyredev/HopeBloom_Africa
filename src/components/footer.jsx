@@ -108,8 +108,8 @@ export default function Footer(){
                 <hr  className='mt-5 text-gray-800'/>
                 <div className='flex justify-between text-[13px] mt-2 text-gray-500'>
                     <p className='text-[9px] md:text-sm'>&copy; {dates} <Link to="mailto:hopebloomafrica@gmail.com" className='hover:text-white transition-all'>HopeBloom_Africa</Link>. All rights reserved.</p>
-                    <Link to="mailto:webfyre@gmail.com" className='text-[9px] md:text-sm text-gray-600 hover:text-white transition-all'>
-                        webfyre@gmail.com
+                    <Link to="mailto:oyinwebworks@gmail.com" className='text-[9px] md:text-sm text-gray-600 hover:text-white transition-all'>
+                        oyinwebworks@gmail.com
                     </Link>
                 </div>
             </footer>
