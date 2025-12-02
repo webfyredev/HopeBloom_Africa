@@ -161,7 +161,7 @@ export default function Home(){
                 </motion.p>
                 <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-5 mt-5 mb-5 lg:mb-0">
                     {programs.map((program) => (
-                        <motion.div {...scrollRightEffect} className="flex flex-col rounded-md shadow-sm mb-5 lg:mb-0 group">
+                        <motion.div {...scrollRightEffect} className="flex flex-col rounded-md shadow-sm mb-5 lg:mb-0 group  overflow-hidden">
                             <img src={program.image} className="w-full h-full object-cover rounded-t-md group-hover:scale-105 group-hover:rounded-md transition-all"/>
                             {/* {program.icon} */}
                             <div className="w-full h-full flex flex-col p-2 rounded-b-md">
