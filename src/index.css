@@ -1,4 +1,7 @@
 @import "tailwindcss";
+body{
+  overflow-x: hidden;
+}
 
 .swiper-button-next, .swiper-button-prev{
   @apply !text-white !w-7 !h-7
