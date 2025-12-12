@@ -27,14 +27,14 @@ export default function Blog(){
             title_2 = 'Updates'
             text  = 'Discover inspiring stories from the communities we serve, program updates, and insights into our mission to transform Africa communities'
             />
-            <div className="w-full flex flex-col md:px-10 py-5">
+            <div className="w-full flex flex-col md:px-5 py-5">
             <h3 className="text-2xl font-bold ml-10">
                 Featured Stories
             </h3>
             <motion.div {...scrollLeftEffect} className="w-full grid grid-cols-1 sm-grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 p-5 overflow-hidden">
                 {featured_stories.map((stories) =>(
                     <motion.div {...cardHoverEffects}  className="md:p-5 flex flex-col">
-                        <img src={stories.image} className="w-full h-75 object-cover rounded-t-md shadow-md"/>
+                        <img src={stories.image} className="w-full h-52  md:h-64 lg:h-75 object-cover rounded-t-md shadow-md"/>
                         <div className="w-full p-3 shadow-md">
                             <div className="w-65 flex justify-between p-1">
                                 <div className="flex items-center">
@@ -83,14 +83,14 @@ export default function Blog(){
                 ))}    
             </div>
 
-            <div className="w-full flex flex-col md:px-10 lg:px-15 mt-5 py-5 overflow-hidden">
+            <div className="w-full flex flex-col md:px-5 lg:px-15 mt-5 py-5 overflow-hidden">
                 <h3 className="font-bold text-2xl ml-5">
                     Latest Updates
                 </h3>
-                <div className="w-[95%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 p-5 overflow-hidden">
+                <div className="w-full lg:w-[95%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 p-5 overflow-hidden">
                     {blogData.map((blog) =>(
                         <motion.div {...cardScrollEffects} className="flex flex-col mb-5">
-                            <img src={blog.image} className="object-cover rounded-t-md"/>
+                            <img src={blog.image} className="w-full h-52 object-cover rounded-t-md"/>
                             <div className="w-full flex flex-col p-3 bg-white shadow-md rounded-b-md">
                                 <div className="w-53 flex justify-between p-1">
                                 <div className="flex items-center">

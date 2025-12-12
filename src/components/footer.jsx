@@ -7,7 +7,7 @@ export default function Footer(){
     const dates = new Date().getFullYear();
     return(
         <>
-            <footer className="flex flex-col bg-[#111827] py-10 px-10 overflow-hidden">
+            <footer className="flex flex-col bg-[#111827] py-10 px-5 md:px-10 overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     <div className="flex flex-col py-5">
                         <div className='flex items-center cursor-pointer'>
